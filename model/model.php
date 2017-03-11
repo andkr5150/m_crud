@@ -34,8 +34,13 @@ function update($id, $name,$description,$created_at){
     $dbh->exec($sql);
 }
 
-function add($name, $description, $created_at){
+function add($name, $description, $created_at = ""){
     $dbh = connect();
+
+    if ($created_at == '') {
+        $created_at = date("Y-m-d H:i:s");
+    }
+
     $sql = "INSERT INTO `form`(`id`, `name`, `discription`, `created_at`) VALUES (0, '$name','$description','$created_at');";
     $dbh -> exec($sql);
     $id = $dbh ->lastInsertId();
