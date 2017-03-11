@@ -24,7 +24,8 @@ function edit($id){
     $dbh = connect();
     $sql = $dbh->query("SELECT * FROM form WHERE `id`='$id'");
     $stat = $sql->fetchAll();
-    return $stat;
+    $res = array_shift($stat);
+    return $res;
 }
 
 function update($id, $name,$description,$created_at){
