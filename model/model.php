@@ -4,7 +4,6 @@ function connect()
     try {
         $dbh = new PDO ('mysql:host=localhost;dbname=mybaz', 'root', '2209');
         $dbh->exec("set names utf8");
-
        // $dbh = null;
         return $dbh;
     } catch (PDOException $e) {
@@ -34,13 +33,8 @@ function update($id, $name,$description,$created_at){
     $dbh->exec($sql);
 }
 
-function add($name, $description, $created_at = ""){
+function add($name, $description, $created_at){
     $dbh = connect();
-
-    if ($created_at == '') {
-        $created_at = date("Y-m-d H:i:s");
-    }
-
     $sql = "INSERT INTO `form`(`id`, `name`, `discription`, `created_at`) VALUES (0, '$name','$description','$created_at');";
     $dbh -> exec($sql);
     $id = $dbh ->lastInsertId();
