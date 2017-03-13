@@ -2,10 +2,6 @@
 
 require_once '../model/model.php';
 
-$created_at = date("Y-m-d H:i:s");
-
-require_once '../view/addForm.php';
-
 if (!empty($_POST['name']) && !empty($_POST['description']) && !empty(['created_at'])){
     $name        = $_POST['name'];
     $description = $_POST['description'];
@@ -14,4 +10,8 @@ if (!empty($_POST['name']) && !empty($_POST['description']) && !empty(['created_
     $id = add($name,$description,$created_at);
     header("location:../controller/edit.php?id=".$id);
 }
+
+$created_at = date("Y-m-d H:i:s");
+require_once '../view/addForm.php';
+
 
