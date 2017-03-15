@@ -1,12 +1,10 @@
 <?php
 
-
 class m_crud {
     private $dbHost     = "localhost";
     private $dbUsername = "root";
     private $dbPassword = "2209";
     private $dbName     = "mybaz";
-
 
     public function connect()
     {
@@ -65,5 +63,4 @@ class m_crud {
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
         $sth->execute();
     }
-
 }
