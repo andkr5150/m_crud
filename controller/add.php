@@ -7,7 +7,8 @@ if (!empty($_POST['name']) && !empty($_POST['description']) && !empty(['created_
     $description = $_POST['description'];
     $created_at  = $_POST['created_at'];
 
-    $id = add($name,$description,$created_at);
+    $m_add = new m_crud();
+    $id = $m_add->add($name,$description,$created_at);
     header("location:../controller/edit.php?id=".$id);
 }
 

@@ -1,6 +1,7 @@
 <?php
 require_once '../model/model.php';
 
-$stmt = view();
+$m_stmt = new m_crud();
+$stmt = $m_stmt->view();
 require_once '../view/viewForm.php';
 
