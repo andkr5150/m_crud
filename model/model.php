@@ -6,6 +6,9 @@ class m_crud {
     private $dbPassword = "2209";
     private $dbName     = "mybaz";
 
+    /**
+     * @return PDO
+     */
     public function connect()
     {
         try {
@@ -19,6 +22,9 @@ class m_crud {
         }
     }
 
+    /**
+     * @return array
+     */
     public function view(){
         $dbh = $this->connect();
         $sth = $dbh->prepare('SELECT * FROM form');
@@ -27,6 +33,10 @@ class m_crud {
         return $stat;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function edit($id){
         $dbh = $this->connect();
         $sth = $dbh->prepare('SELECT * FROM form WHERE id=:id');
@@ -36,7 +46,13 @@ class m_crud {
         return $res;
     }
 
-    public function update($id, $name,$description,$created_at){
+    /**
+     * @param $id
+     * @param $name
+     * @param $description
+     * @param $created_at
+     */
+    public function update($id, $name, $description, $created_at){
         $dbh = $this->connect();
         $sth = $dbh ->prepare('UPDATE form SET name=:name, discription =:description, created_at=:created_at WHERE id=:id');
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
@@ -46,6 +62,12 @@ class m_crud {
         $sth->execute();
     }
 
+    /**
+     * @param $name
+     * @param $description
+     * @param $created_at
+     * @return string
+     */
     public function add($name, $description, $created_at){
         $dbh = $this->connect();
         $sth = $dbh ->prepare('INSERT INTO form (id, name, discription, created_at) VALUES (0, :name, :description, :created_at)');
@@ -57,6 +79,9 @@ class m_crud {
         return $id;
     }
 
+    /**
+     * @param $id
+     */
     public function delete($id){
         $dbh = $this->connect();
         $sth = $dbh->prepare('DELETE FROM form WHERE id=:id');
